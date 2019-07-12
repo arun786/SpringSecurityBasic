@@ -16,4 +16,9 @@ public class AdminController {
     public ResponseEntity<String> userPage(){
         return ResponseEntity.ok("user");
     }
+
+    @GetMapping("/newUser/home")
+    public ResponseEntity<String> newUserPage(){
+        return ResponseEntity.ok("new User");
+    }
 }

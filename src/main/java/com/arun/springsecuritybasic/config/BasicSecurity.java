@@ -20,7 +20,11 @@ public class BasicSecurity extends WebSecurityConfigurerAdapter {
                 .and()
                 .withUser("User")
                 .password("password")
-                .roles("BASIC");
+                .roles("BASIC")
+                .and()
+                .withUser("newUser")
+                .password("newPassword")
+                .roles("NEWBASIC");
     }
 
     @Override
@@ -36,6 +40,14 @@ public class BasicSecurity extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/user/**")
                 .hasAnyRole("BASIC")
+                .anyRequest()
+                .fullyAuthenticated()
+                .and()
+                .httpBasic();
+
+        http.authorizeRequests()
+                .antMatchers("/newUser/**")
+                .hasAnyRole("NEWBASIC")
                 .anyRequest()
                 .fullyAuthenticated()
                 .and()
